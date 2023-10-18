@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instant Messaging</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-box {
+            width: 300px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .message {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .user-input {
+            display: flex;
+        }
+
+        .user-input input {
+            flex-grow: 2;
+            padding: 5px;
+        }
+
+        .user-input button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-box">
+        <div class="message">Hello! How can I help you today?</div>
+        <div class="message">I'd like to learn more about HTML and CSS.</div>
+        <div class="message">Sure, I can help with that.</div>
+        <div class="user-input">
+            <input type="text" id="user-message" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value;
+            if (userMessage.trim() === "") {
+                return;
+            }
+
+            const chatBox = document.querySelector(".chat-box");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "message";
+            messageDiv.textContent = userMessage;
+            chatBox.appendChild(messageDiv);
+            
+            document.getElementById("user-message").value = "";
+        }
+    </script>
+</body>
+</html>
 
