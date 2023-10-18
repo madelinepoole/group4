@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BusinessCasual - Personalized Event Recommendations for Mary Adeniji</title>
+</head>
+<body>
+  <h1>BusinessCasual - Personalized Event Recommendations</h1>
+  <h2>Welcome, Mary Adeniji!</h2>
+
+  <p>We're excited to recommend some events for you based on your social and professional interests.</p>
+
+  <div id="event-recommendations">
+  </div>
+
+  <script>
+    // Get Mary's location
+    var location = document.getElementById("location").value;
+
+    // Make a request to the BusinessCasual API to get personalized event recommendations for Mary
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.businesscasual.com/events/recommendations?location=" + location + "&interests=romantic+novels,playing+tennis");
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Success!
+        var events = JSON.parse(xhr.responseText);
+
+        // Display the event recommendations on the page
+        var eventRecommendationsDiv = document.getElementById("event-recommendations");
+        for (var i = 0; i < events.length; i++) {
+          var event = events[i];
+
+          // Create an HTML element for the event
+          var eventElement = document.createElement("div");
+          eventElement.classList.add("event");
+
+          // Add the event details to the HTML element
+          eventElement.innerHTML = `
+            <h3>${event.name}</h3>
+            <p>${event.description}</p>
+            <p>${event.date}</p>
+            <p>${event.time}</p>
+            <p>${event.location}</p>
+          `;
+
+          // Add the event element to the event recommendations div
+          eventRecommendationsDiv.appendChild(eventElement);
+        }
+      } else {
+        // Error!
+        console.error(xhr.statusText);
+      }
+    };
+    xhr.send();
+  </script>
+</body>
+</html>
+
+<a href="Index">Click here for the Homepage</a>
