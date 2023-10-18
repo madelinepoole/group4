@@ -1,77 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BusinessCasual - Personalized Event Recommendations for Mary Adeniji</title>
-</head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusinessCasual - Personalized Event Recommendations for Mary Adeniji</title>
+</head>
 <body>
-  <a href="Index">Click here for the Homepage</a>
-  <h1>BusinessCasual - Personalized Event Recommendations</h1>
-  <h2>Welcome, Mary Adeniji!</h2>
+    <a href="Index">Click here for the Homepage</a>
+    <h1>BusinessCasual - Personalized Event Recommendations</h1>
+    <h2>Welcome, Mary Adeniji!</h2>
 
-  <p>We're excited to recommend some events for you based on your social and professional interests.</p>
+    <p>We're excited to recommend some events for you based on your interests and career.</p>
 
-  <div id="event-recommendations">
-    <!-- Event recommendations will be displayed here -->
-  </div>
+    <div id="event-recommendations">
+    </div>
 
-  <script>
-    // Simulating Mary's location (you can replace this with a user input or geolocation)
-    var maryLocation = "New York";
+    <script>
+        // Define Mary's interests and career
+        var maryInterests = ["playing tennis", "romantic novels"];
+        var maryCareer = "software developer";
 
-    // Define Mary's interests
-    var maryInterests = ["romantic novels", "playing tennis", "software development"];
+        // Function to generate generic event recommendations
+        function generateEvents() {
+            var events = [];
 
-    // Make a request to the BusinessCasual API to get personalized event recommendations for Mary
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", `https://api.businesscasual.com/events?location=${maryLocation}`);
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        // Success!
-        var events = JSON.parse(xhr.responseText);
+            // Sample events (you can add more)
+            var event1 = {
+                name: "Tennis Tournament",
+                description: "Join a tennis tournament with other tennis enthusiasts.",
+                date: "October 20, 2023",
+                time: "9:00 AM - 3:00 PM",
+                location: "Local Tennis Club",
+                interests: ["playing tennis"],
+            };
 
-        // Filter events based on Mary's interests
-        var filteredEvents = events.filter(function(event) {
-          for (var i = 0; i < maryInterests.length; i++) {
-            if (event.interests.includes(maryInterests[i])) {
-              return true;
-            }
-          }
-          return false;
-        });
+            var event2 = {
+                name: "Romantic Book Club Meeting",
+                description: "Discuss and explore romantic novels with fellow book lovers.",
+                date: "October 25, 2023",
+                time: "7:00 PM - 9:00 PM",
+                location: "Local Library",
+                interests: ["romantic novels"],
+            };
+
+            var event3 = {
+                name: "Tech Conference",
+                description: "Stay updated on the latest technology trends at the software development conference.",
+                date: "November 5, 2023",
+                time: "10:00 AM - 5:00 PM",
+                location: "Conference Center",
+                interests: ["software development"],
+            };
+
+            // Add events to the recommendations based on Mary's interests and career
+            events.push(event1, event2, event3);
+
+            return events;
+        }
 
         // Display the event recommendations on the page
         var eventRecommendationsDiv = document.getElementById("event-recommendations");
-        if (filteredEvents.length > 0) {
-          for (var i = 0; i < filteredEvents.length; i++) {
-            var event = filteredEvents[i];
+        var events = generateEvents();
 
-            // Create an HTML element for the event
-            var eventElement = document.createElement("div");
-            eventElement.classList.add("event");
+        if (events.length > 0) {
+            for (var i = 0; i < events.length; i++) {
+                var event = events[i];
 
-            // Add the event details to the HTML element
-            eventElement.innerHTML = `
-              <h3>${event.name}</h3>
-              <p>${event.description}</p>
-              <p>Date: ${event.date}</p>
-              <p>Time: ${event.time}</p>
-              <p>Location: ${event.location}</p>
-            `;
+                // Create an HTML element for the event
+                var eventElement = document.createElement("div");
+                eventElement.classList.add("event");
 
-            // Add the event element to the event recommendations div
-            eventRecommendationsDiv.appendChild(eventElement);
-          }
+                // Add the event details to the HTML element
+                eventElement.innerHTML = `
+                    <h3>${event.name}</h3>
+                    <p>${event.description}</p>
+                    <p>Date: ${event.date}</p>
+                    <p>Time: ${event.time}</p>
+                    <p>Location: ${event.location}</p>
+                `;
+
+                // Add the event element to the event recommendations div
+                eventRecommendationsDiv.appendChild(eventElement);
+            }
         } else {
-          eventRecommendationsDiv.innerHTML = "<p>No events found matching your interests.</p>";
+            eventRecommendationsDiv.innerHTML = "<p>No events found matching your interests and career.</p>";
         }
-      } else {
-        // Error handling
-        console.error(xhr.statusText);
-      }
-    };
-    xhr.send();
-  </script>
+    </script>
 </body>
 </html>
