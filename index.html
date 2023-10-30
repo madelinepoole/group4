@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to BusinessCasual</title>
+     <style>
+        /* Style for the search input */
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
    
 </head>
 <body>
+      <h1>Search Function Example</h1>
+
+    <input type="text" id="searchInput" placeholder="Search for items...">
+
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+    </ul>
+
+    <script>
+        // JavaScript to handle the search functionality
+        const searchInput = document.getElementById('searchInput');
+        const itemList = document.getElementById('itemList');
+        const items = itemList.getElementsByTagName('li');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            for (let i = 0; i < items.length; i++) {
+                const itemText = items[i].textContent.toLowerCase();
+
+                if (itemText.includes(searchTerm)) {
+                    items[i].style.display = 'block';
+                } else {
+                    items[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
     <br> 
     <a href = "Newsfeed.html">Newsfeed</a>
     <br> 
