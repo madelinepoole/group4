@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to BusinessCasual</title>
-     <style>
+    <style>
         /* Style for the search input */
         #searchInput {
             width: 100%;
@@ -12,42 +12,74 @@
             margin: 10px 0;
             font-size: 16px;
         }
+
+        /* Initial style for the item list, hidden by default */
+        #itemList {
+            display: none;
+        }
     </style>
-   
+
+</head>
 </head>
 <body>
-      <h1>Search Function Example</h1>
+    <h1>Search and Filter Example</h1>
 
     <input type="text" id="searchInput" placeholder="Search for items...">
+    
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter">
+        <option value="all">All</option>
+        <option value="category1">Arkansas</option>
+        <option value="category2">Colorado</option>
+    </select>
 
     <ul id="itemList">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
-        <li>Item 6</li>
+        <li data-category="category1"> Healthcare Industry (Arkansas)</li>
+        <li data-category="category2">Healthcare Industry (Colorado)</li>
+        <li data-category="category1">Poultry Industry (Arkansas)</li>
+        <li data-category="category2">Poultry Industry (Colorado)</li>
+        <li data-category="category1">Data Industry (Arkansas)</li>
+        <li data-category="category2">Data Industry (Colorado)</li>
     </ul>
 
     <script>
-        // JavaScript to handle the search functionality
+        // JavaScript to handle the search and filter functionality
         const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
         const itemList = document.getElementById('itemList');
         const items = itemList.getElementsByTagName('li');
 
-        searchInput.addEventListener('input', function() {
+        window.onload = function() {
+            itemList.style.display = 'none'; // Initially, hide the item list
+        };
+
+        searchInput.addEventListener('input', updateList);
+        categoryFilter.addEventListener('change', updateList);
+
+        function updateList() {
             const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+
+            // Show the item list when a search is made
+            itemList.style.display = 'block';
 
             for (let i = 0; i < items.length; i++) {
-                const itemText = items[i].textContent.toLowerCase();
+                const item = items[i];
+                const itemText = item.textContent.toLowerCase();
+                const itemCategory = item.getAttribute('data-category');
 
-                if (itemText.includes(searchTerm)) {
-                    items[i].style.display = 'block';
+                const searchTermMatch = itemText.includes(searchTerm) || searchTerm === '';
+                const categoryMatch = selectedCategory === 'all' || selectedCategory === itemCategory;
+
+                if (searchTermMatch && categoryMatch) {
+                    item.style.display = 'block';
                 } else {
-                    items[i].style.display = 'none';
+                    item.style.display = 'none';
                 }
             }
-        });
+        }
+    </script>
+   
     </script>
     <br> 
     <a href = "Newsfeed.html">Newsfeed</a>
@@ -75,14 +107,14 @@
         <section id="services">
             <h2>Our Services</h2>
             <ul>
-                <li>Web Design</li>
-                <li>Graphic Design</li>
-                <li>Digital Marketing</li>
+                <li>Networking</li>
+                <li>Authentic Business Connections</li>
+                <li>Personnel made Personal</li>
             </ul>
         </section>
         <section id="contact">
             <h2>Contact Us</h2>
-            <p>If you have any questions or need our services, feel free to contact us.</p>
+            <p>If you have any questions or need our services, feel free to contact us at VivaSparkMedia@email.com</p>
         </section>
     </main>
     <footer>
