@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BusinessCausal Job Board</title>
+    <!-- Add CSS links for styling here -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to BusinessCausal's Job Board</h1>
+    </header>
+    
+    <!-- Employer Section -->
+    <section>
+        <h2>Employers: Post a Job</h2>
+        <form id="employer-post-job-form" method="post" action="post_job_handler.php">
+            <label for="job_title">Job Title:</label>
+            <input type="text" id="job_title" name="job_title" required><br>
+
+            <label for="job_description">Job Description:</label>
+            <textarea id="job_description" name="job_description" required></textarea><br>
+
+            <label for="application_instructions">Application Instructions:</label>
+            <textarea id="application_instructions" name="application_instructions" required></textarea><br>
+
+            <label for="contact_information">Contact Information:</label>
+            <input type="text" id="contact_information" name="contact_information" required><br>
+
+            <button type="submit">Post Job</button>
+        </form>
+    </section>
+
+    <!-- Recent Graduates Section -->
+    <section>
+        <h2>Recent Graduates: Find Jobs</h2>
+        <form id="graduate-search-job-form" method="get" action="search_jobs.php">
+            <label for="job_search">Search for Jobs:</label>
+            <input type="text" id="job_search" name="job_search">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Display job listings here -->
+        <div id="job-listings">
+            <!-- This section will be populated with job listings from the database -->
+            <!-- Each job listing should include job title, job description, application instructions, and contact information -->
+        </div>
+
+        <!-- Push Notifications Preferences -->
+        <h3>Push Notifications Preferences</h3>
+        <form id="push-notification-preferences-form">
+            <label for="notification_type">Notification Type:</label>
+            <select id="notification_type" name="notification_type">
+                <option value="email">Email</option>
+                <option value="sms">SMS</option>
+            </select>
+
+            <label for="notification_frequency">Notification Frequency:</label>
+            <select id="notification_frequency" name="notification_frequency">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+            </select>
+
+            <button type="submit">Save Preferences</button>
+        </form>
+    </section>
+
+    <!-- Add JavaScript for dynamic interactions and push notifications here -->
+</body>
+</html>
