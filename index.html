@@ -1,118 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <style>
+          .businesscasual {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 400; /* You can add this for emphasis, if desired */
+          }
+      
+          .casual {
+            font-family: 'Pacifico', cursive, bold;
+          }
+        </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to BusinessCasual</title>
     <style>
-        /* Style for the search input */
+        /* Reset some default styles */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #407da9; /* Dark Blue */
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #fff;
+            display: flex;
+            justify-content: center; /* Center the navigation */
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 20px; /* Add space between menu items */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #407da9; /* Dark Blue */
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #6D9071; /* Sage color */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #407da9;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f7f7f7;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #407da9;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #6D9071;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #6D9071;
+        }
+
+        /* Search bar styles */
+        h3 {
+            font-size: 24px;
+            color: #407da9; /* Dark Blue */
+            text-align: center;
+            margin-top: 20px;
+        }
+
         #searchInput {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            font-size: 16px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            color: #407da9; /* Dark Blue */
         }
 
-        /* Initial style for the item list, hidden by default */
+        label {
+            font-size: 18px;
+            color: #407da9; /* Dark Blue */
+            display: block;
+            margin-top: 10px;
+        }
+
+        #categoryFilter {
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            color: #407da9; /* Dark Blue */
+            width: 100%;
+        }
+
+        /* Item list styles */
         #itemList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #itemList li {
+            font-size: 18px;
+            color: #333;
             display: none;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        #itemList li:last-child {
+            border-bottom: none;
+        }
+
+        #itemList li:hover {
+            background-color: #f7f7f7;
         }
     </style>
-<header>
-        <h1>Welcome to BusinessCasual</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
- </header>
-
-<body>
-    <h3>Search</h3>
-    <input type="text" id="searchInput" placeholder="Search for items...">
-    <label for="categoryFilter">Filter by Category:</label>
-    <select id="categoryFilter">
-        <option value="all">All</option>
-        <option value="category1">Arkansas</option>
-        <option value="category2">Colorado</option>
-    </select>
-
-    <ul id="itemList">
-        <li data-category="category1"> Healthcare Industry (Arkansas)</li>
-        <li data-category="category2">Healthcare Industry (Colorado)</li>
-        <li data-category="category1">Poultry Industry (Arkansas)</li>
-        <li data-category="category2">Poultry Industry (Colorado)</li>
-        <li data-category="category1">Data Industry (Arkansas)</li>
-        <li data-category="category2">Data Industry (Colorado)</li>
-    </ul>
-
-    <script>
-        // JavaScript to handle the search and filter functionality
-        const searchInput = document.getElementById('searchInput');
-        const categoryFilter = document.getElementById('categoryFilter');
-        const itemList = document.getElementById('itemList');
-        const items = itemList.getElementsByTagName('li');
-
-        window.onload = function() {
-            itemList.style.display = 'none'; // Initially, hide the item list
-        };
-
-        searchInput.addEventListener('input', updateList);
-        categoryFilter.addEventListener('change', updateList);
-
-        function updateList() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedCategory = categoryFilter.value;
-
-            // Show the item list when a search is made
-            itemList.style.display = 'block';
-
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const itemText = item.textContent.toLowerCase();
-                const itemCategory = item.getAttribute('data-category');
-
-                const searchTermMatch = itemText.includes(searchTerm) || searchTerm === '';
-                const categoryMatch = selectedCategory === 'all' || selectedCategory === itemCategory;
-
-                if (searchTermMatch && categoryMatch) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        }
-    </script>
-    </script>
-    <br> 
-    <br> 
-    
-    <a href = "Newsfeed.html">Newsfeed</a>
-    <br> 
-    <a href = "Testeventpage.html">Events</a>
-    <br>
-    <a href = "messaging.html">Messaging</a>
-    <br>
-    <a href = "profile.html">Profile</a>
-    <br>
-    <a href = "jobs.html">Jobs</a>
-    <br>
-    <a href = " User activities and exp.html">Communnity Involvement</a> 
-   
-   <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>BusinessCausal After Hours</title>
 </head>
 <body>
-    <p><strong>Dear BusinessCausal Users,</strong></p>
-    
+    <header>
+        <h1>Welcome to <span class="businesscasual">Business</span><span class="casual">Casual</span></h1>
+    </header>
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="Newsfeed.html">Newsfeed</a>
+                <a href="Testeventpage.html">Events</a>
+                <a href="messaging.html">Messaging</a>
+                <a href="profile.html">Profile</a>
+            </div>
+        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h3>Search</h3>
+        <input type="text" id="searchInput" placeholder="Search for items...">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="category1">Arkansas</option>
+            <option value="category2">Colorado</option>
+        </select>
+        <ul id="itemList">
+            <li data-category="category1"> Healthcare Industry (Arkansas)</li>
+            <li data-category="category2">Healthcare Industry (Colorado)</li>
+            <li data-category="category1">Poultry Industry (Arkansas)</li>
+            <li data-category="category2">Poultry Industry (Colorado)</li>
+            <li data-category="category1">Data Industry (Arkansas)</li>
+            <li data-category="category2">Data Industry (Colorado)</li>
+        </ul>
+        <script>
+            // JavaScript to handle the search and filter functionality
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const itemList = document.getElementById('itemList');
+            const items = itemList.getElementsByTagName('li');
+            searchInput.addEventListener('input', updateList);
+            categoryFilter.addEventListener('change', updateList);
+            function updateList() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+                for (let i = 0; i < items.length; i++) {
+                    const item = items[i];
+                    const itemText = item.textContent.toLowerCase();
+                    const itemCategory = item.getAttribute('data-category');
+                    const searchTermMatch = itemText.includes(searchTerm) || searchTerm === '';
+                    const categoryMatch = selectedCategory === 'all' || selectedCategory === itemCategory;
+                    if (searchTermMatch && categoryMatch) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            }
+        </script>
+    </main>
+</body>
+
+    <br> 
+    <br> 
+<head>
+    <meta charset="UTF-8">
+    <title><span class="businesscasual">Business</span><span class="casual">Casual</span> After Hours</title>
+</head>
+<body>
+    <p><strong>Dear <span class="businesscasual">Business</span><span class="casual">Casual</span> Users,</strong></p>
+    <br>
     <p>We value your dedication during the 8-5 work hours, but we also recognize the importance of fostering a strong community and encouraging engagement beyond the office. At BusinessCausal, we believe that our users are at their best when they can grow both professionally and personally.</p>
 
-    <p>That's why we're excited to introduce our "<a href="[Link URL for BusinessCausal After Hours Program]">BusinessCausal After Hours</a>" program! This initiative is designed to help you connect with your colleagues, expand your skills, and give back to the community. Here are some ways you can get involved:</p>
+    <p>That's why we're excited to introduce our "<a href="[Link URL for BusinessCausal After Hours Program]"><span class="businesscasual">Business</span><span class="casual">Casual</span> After Hours</a>" program! This initiative is designed to help you connect with your colleagues, expand your skills, and give back to the community. Here are some ways you can get involved:</p>
 
     <ol>
         <li>Monthly TechTalks: Join us for monthly evening <a href="[Link URL for Monthly TechTalks]">TechTalks</a> where you can learn about emerging industry trends, network with experts, and share your own knowledge.</li>
@@ -122,25 +262,29 @@
         <li>TechSolutions Blog: Share your insights and expertise by contributing to our company <a href="[Link URL for TechSolutions Blog]">blog</a>. Your voice matters, and we encourage you to share your knowledge with the world.</li>
         <li>Social Gatherings: We host regular <a href="[Link URL for Social Gatherings]">social gatherings</a> outside of working hours to relax and connect with your teammates.</li>
     </ol>
-
+    <br>
     <p>We are excited about the potential for growth, collaboration, and fun that TechSolutions After Hours offers. Your participation is completely voluntary, and you are welcome to engage in activities that interest you.</p>
-
+    <br>
     <p>Stay tuned for upcoming events and initiatives! Your work-life balance and personal growth are essential to us, and BusinessCausal is committed to providing opportunities for you to thrive inside and outside the office.</p>
-
-    <p>Thank you for being part of the BusinessCausal community.</p>
-
+    <br>
+    <p>Thank you for being part of the <span class="businesscasual">Business</span><span class="casual">Casual</span> community.</p>
+    <br>
     <p><strong>Best regards,</strong><br>
     Matt Colegrove<br>
     Software Deveopment Analyst<br>
-    BusinessCausal Inc.</p>
+    <span class="businesscasual">Business</span><span class="casual">Casual</span> Inc.</p>
+    <br>
+    <br>
+    
 </body>
 </html>
 
     <main>
         <section id="about">
             <h2>About Us</h2>
-            <p>Welcome to BusinessCausal. We are dedicated to finding the person behind the professional.</p>
+            <p>Welcome to <span class="businesscasual">Business</span><span class="casual">Casual</span>. We are dedicated to finding the person behind the professional.</p>
         </section>
+        <br>
         <section id="services">
             <h2>Our Services</h2>
             <ul>
@@ -149,14 +293,14 @@
                 <li>Personnel made Personal</li>
             </ul>
         </section>
+        <br>
         <section id="contact">
             <h2>Contact Us</h2>
             <p>If you have any questions or need our services, feel free to contact us at VivaSparkMedia@email.com</p>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 BusinessCasual. All rights reserved.</p>
+        <p>&copy; 2023 <span class="businesscasual">Business</span><span class="casual">Casual</span> All rights reserved.</p>
     </footer>
 </body>
 </html>
-
