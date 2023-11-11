@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Image with Centered Caption</title>
+    <style>
+        figure {
+            text-align: center;
+        }
+
+        figcaption {
+            margin-top: 10px; /* Adjust the margin as needed */
+        }
+    </style>
+        <style>
+          .businesscasual {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 400; /* You can add this for emphasis, if desired */
+          }
+      
+          .casual {
+            font-family: 'Pacifico', cursive, bold;
+          }
+        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BusinessCasual</title>
+    <style>
+         /* Header styles */
+         header {
+             background-color: #407da9; /* Dark Blue */
+             color: #fff;
+             text-align: center;
+             padding: 40px 0;
+         }
+ 
+         header h1 {
+             font-size: 36px;
+             font-weight: bold;
+             margin-bottom: 10px;
+         }
+ 
+         /* Search bar styles */
+         h3 {
+             font-size: 24px;
+             color: #407da9; /* Dark Blue */
+             text-align: center;
+             margin-top: 20px;
+         }
+
+        .center-text {
+            text-align: center;
+        }
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BusinessCasual</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #407da9; /* Dark Blue */
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #fff;
+            display: flex;
+            justify-content: center; /* Center the navigation */
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 20px; /* Add space between menu items */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #407da9; /* Dark Blue */
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #6D9071; /* Sage color */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #407da9;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f7f7f7;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #407da9;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #6D9071;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #6D9071;
+        }
+
+        /* Search bar styles */
+        h3 {
+            font-size: 24px;
+            color: #407da9; /* Dark Blue */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            color: #407da9; /* Dark Blue */
+        }
+
+        label {
+            font-size: 18px;
+            color: #407da9; /* Dark Blue */
+            display: block;
+            margin-top: 10px;
+        }
+
+        #categoryFilter {
+            font-size: 18px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            color: #407da9; /* Dark Blue */
+            width: 100%;
+        }
+
+        /* Item list styles */
+        #itemList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #itemList li {
+            font-size: 18px;
+            color: #333;
+            display: none;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        #itemList li:last-child {
+            border-bottom: none;
+        }
+
+        #itemList li:hover {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="index.html">Homepage</a>
+                <a href="Newsfeed.html">Newsfeed</a>
+                <a href="Testeventpage.html">Events</a>
+                <a href="messaging.html">Messaging</a>
+                <a href="profile.html">Profile</a>
+            </div>
+        </div>
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+     </style>
+ </head>
+ <body>   <header>
+    <h1>MetaMeet</h1>
+    <br>
+    <span class="businesscasual">Business</span><span class="casual">Casual</span>: Dedicated to finding the person behind the professional.
+</header>
+<h3>Connect, Converse, B-Casual. All on the MetaVerse.</h3>
+<p>We at <span class="businesscasual">Business</span><span class="casual">Casual</span> are excited to announce a new feature in development!</p>
+<p>Want to connect with people but can't because you don't live in the same location? MetaMeet allows any person connected on our website to do just that.</p>
+<p>Wheter you want to: </p>
+<ol>
+    <li>Relax with work friends with a beer after a hard day.</li>
+    <li>Meet up with a new professional connection over a cup of coffee.</li>
+    <li>Create a workplace bonding activity for your team.</li>
+</ol>
+<p>MetaMeet can meet those needs and more. So hop on, have fun, and above all B-Casual.</p>
+<br>
+<figure> 
+    <img src="metameet.jpeg" alt="MetaMeet" width="700">
+   <figcaption> MetaMeet: Connect | Converse | B-Casual </figcaption>
+</figure>
