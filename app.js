@@ -1,17 +1,22 @@
-function sendMessage(message) {
-    const inputField = document.getElementById('messageInput');
-    const messageText = message || inputField.value.trim();
+function changeUser(user) {
+    // Placeholder function for changing the user
+    alert(`Switching to ${user}`);
+}
 
-    if (messageText !== '') {
+function sendDifferentQuery() {
+    const queryInput = document.getElementById('differentQueryInput');
+    const queryText = queryInput.value.trim();
+
+    if (queryText !== '') {
         const chatContainer = document.querySelector('.chat');
         const newMessage = document.createElement('div');
         newMessage.className = 'message';
-        newMessage.textContent = messageText;
+        newMessage.textContent = queryText;
 
         chatContainer.appendChild(newMessage);
 
         // Clear input field
-        inputField.value = '';
+        queryInput.value = '';
 
         // Scroll to the bottom of the chat
         chatContainer.scrollTop = chatContainer.scrollHeight;
