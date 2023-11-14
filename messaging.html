@@ -11,6 +11,14 @@
         <h1>My Messaging App</h1>
     </header>
     <div class="container">
+        <div class="user-list">
+            <h2>User List</h2>
+            <ul>
+                <li><a href="#" onclick="changeUser('User 1')">User 1</a></li>
+                <li><a href="#" onclick="changeUser('User 2')">User 2</a></li>
+                <li><a href="#" onclick="changeUser('User 3')">User 3</a></li>
+            </ul>
+        </div>
         <div class="chat">
             <div class="message received">Hello! How can I help you today?</div>
             <!-- Suggestions -->
@@ -22,6 +30,12 @@
             <div class="input-container">
                 <input type="text" id="messageInput" placeholder="Type your message...">
                 <button onclick="sendMessage()">Send</button>
+            </div>
+            <!-- Different Query Section -->
+            <div class="different-query">
+                <p>Have a different query?</p>
+                <textarea id="differentQueryInput" placeholder="Type your different query..."></textarea>
+                <button onclick="sendDifferentQuery()">Send</button>
             </div>
         </div>
     </div>
