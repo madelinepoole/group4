@@ -118,4 +118,59 @@
 </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Analytics</h1>
+    </header>
+    <div class="container">
+        <section class="analytics">
+            <canvas id="userChart"></canvas>
+        </section>
+    </div>
+
+    <script>
+        // Sample data for the chart
+        const userData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'User Activity',
+                data: [120, 150, 200, 180, 250, 210],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Get the canvas element
+        const ctx = document.getElementById('userChart').getContext('2d');
+
+        // Create a bar chart
+        new Chart(ctx, {
+            type: 'bar',
+            data: userData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 
